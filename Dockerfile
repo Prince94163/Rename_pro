@@ -1,17 +1,15 @@
-
-FROM python:latest
+FROM python:3.10
 
 WORKDIR /app
 
-COPY requirements.txt /app/
+# Copy the application files
+COPY . /app/
 
-RUN apt update && apt upgrade -y
-RUN apt install git python3-pip ffmpeg -y
+# Install Python dependencies
+RUN pip install -r requirements.txt
 
-COPY . .
+# Install ffmpeg using apt
+RUN apt update && apt install -y ffmpeg
 
-RUN pip3 install -r requirements.txt
-
-COPY . /app
-
-CMD python3 bot.py
+# CMD to run both gunicorn and bot.py
+CMD ["sh", "-c", "gunicorn -b 0.0.0.0:8000 app:app & python3 bot.py"]
