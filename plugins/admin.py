@@ -2,7 +2,7 @@ from pyrogram.types import (InlineKeyboardButton, InlineKeyboardMarkup)
 from config import *
 from pyrogram import Client, filters
 from helper.date import add_date
-from helper.database2 import uploadlimit, usertype, addpre
+from helper.database import uploadlimit, usertype, addpre
 
 
 @Client.on_message(filters.private & filters.user(OWNER) & filters.command(["warn"]))
