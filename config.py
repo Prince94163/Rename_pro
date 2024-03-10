@@ -4,7 +4,7 @@ import os, re
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
 API_ID = int(os.environ.get("API_ID", ""))
 API_HASH = os.environ.get("API_HASH", "")
-OWNER = int(os.environ.get("OWNER", ""))
+OWNER = [int(owner) if id_pattern.search(owner) else owner for owner in environ.get('OWNER', '').split()]
 BOT_USERNAME = os.environ.get('BOT_USERNAME', "")
 
 FORCE_SUBS = os.environ.get("FORCE_SUBS", "HxBots")
